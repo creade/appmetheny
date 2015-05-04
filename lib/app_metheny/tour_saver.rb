@@ -16,7 +16,7 @@ module TourSaver
     resp = s3.put_object(
       :bucket => "appmetheny.com",
       :key => "data/past.json",
-      :body => JSON.generate(past_and_upcoming[0])
+      :body => JSON.generate(past_and_upcoming[0].last(15))
     )
 
 

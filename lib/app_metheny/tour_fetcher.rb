@@ -3,6 +3,7 @@ require 'json'
 require 'time'
 require 'pp'
 require 'timezone'
+require 'tzinfo'
 require 'dotenv'
 Dotenv.load
 
@@ -42,19 +43,21 @@ module TourFetcher
         longitude = stop["venue"]["longitude"]
         timezone = Timezone::Zone.new :latlon => [ latitude, longitude]
 
+
         local_date_time_utc = timezone.local_to_utc(Time.parse(stop["datetime"] + " UTC"))
+
 
         {
           "latitude" => latitude,
           "longitude" => longitude,
           "datetime" => local_date_time_utc,
+
           "venueName" => stop["venue"]["name"],
           "venuePlace" => stop["venue"]["city"] + ", " +  stop["venue"]["country"]
         }
       }
 
       all_stops.partition { |stop|
-        pp stop
         stop["datetime"] < Time.now.utc
       }
 

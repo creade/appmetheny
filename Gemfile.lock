@@ -15,7 +15,10 @@ GEM
       multi_json (~> 1.0)
     multi_json (1.11.0)
     rake (10.4.2)
+    thread_safe (0.3.5)
     timezone (0.3.9)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
 
 PLATFORMS
   ruby
@@ -25,3 +28,4 @@ DEPENDENCIES
   dotenv
   rake
   timezone
+  tzinfo
